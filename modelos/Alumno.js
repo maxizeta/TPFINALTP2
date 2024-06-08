@@ -1,4 +1,5 @@
-import {DataTypes, Model} from "sequelize"
+import {Model} from "sequelize"
+import conexion from "../conexion/conexion"
 
 class Alumno extends Model{}
 
@@ -20,5 +21,11 @@ Alumno.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+    },
+    {
+        sequelize: conexion,
+        modelName: "Alumno"
     }
 )
+
+export default Alumno;

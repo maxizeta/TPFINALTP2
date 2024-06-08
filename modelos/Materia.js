@@ -1,4 +1,4 @@
-import {DataTypes, Model} from "sequelize"
+import {Model} from "sequelize"
 
 class Materia extends Model{}
 
@@ -12,5 +12,12 @@ Materia.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+    },
+    {
+        sequelize: conexion,
+        modelName: "Materia"
     }
+    
 )
+
+export default Materia
