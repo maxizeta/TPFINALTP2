@@ -1,5 +1,5 @@
-import {Model} from "sequelize"
-import conexion from "../conexion/conexion"
+import {DataTypes, Model} from "sequelize"
+import conexion from "../conexion/conexion.js"
 
 class Alumno extends Model{}
 

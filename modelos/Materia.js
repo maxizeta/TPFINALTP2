@@ -1,4 +1,5 @@
-import {Model} from "sequelize"
+import {DataTypes, Model} from "sequelize"
+import conexion from "../conexion/conexion.js"
 
 class Materia extends Model{}
 
