@@ -21,11 +21,21 @@ Alumno.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        contraseña: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
     {
         sequelize: conexion,
         modelName: "Alumno"
     }
 )
+Alumno.beforeCreate(async (Alumno) => {
+    const salt = await bcrypt.genSalt();
+    Alumno.salt = salt;
+    const contraHasheada = await bcrypt.hash(Alumno.contraseña, salt);
+    Alumno.contraseña = contraHasheada;
+  });
 
 export default Alumno;
