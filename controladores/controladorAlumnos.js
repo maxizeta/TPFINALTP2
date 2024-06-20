@@ -58,6 +58,15 @@ class ControladorAlumnos {
         res.status(500).send({ success: false, message: error.message });
       }
     };
+    me = async (req, res) => {
+      try {
+        const { Alumno } = req;
+        if (!Alumno) throw new Error("datos incorrectos");
+        res.status(200).send({ success: true, message: Alumno});
+      } catch (error) {
+        res.status(500).send({ success: false, message: error.message });
+      }
+    }
 
 }
 export default ControladorAlumnos

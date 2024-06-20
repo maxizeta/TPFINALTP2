@@ -18,9 +18,14 @@ Alumno.init(
             },
         },
         dni: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
-        },
+            validate: {
+              len: [8, 8],
+              isNumeric: true,
+            },
+        },    
+          
         contraseña: {
             type: DataTypes.STRING,
             allowNull: false,
