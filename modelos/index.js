@@ -6,4 +6,5 @@ Alumno.belongsToMany(Materia, { through: 'AlumnoMateria' });
 Materia.belongsToMany(Alumno, { through: 'AlumnoMateria' });
 
 
+
 export {Alumno, Materia}

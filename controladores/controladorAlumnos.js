@@ -1,4 +1,4 @@
-import { Alumno } from "../modelos/index.js";
+import { Alumno, Materia } from "../modelos/index.js";
 import { generadorDeToken, decodificadorDeToken } from "../tokens/token.js";
 
 class ControladorAlumnos {
@@ -67,6 +67,42 @@ class ControladorAlumnos {
         res.status(500).send({ success: false, message: error.message });
       }
     }
+    mostrarMateriasDelAlumno = async (req, res) => {
+      try {
+          const { id } = req.params;
+          const data = await Alumno.findAll({
+              include: [{
+                  model: Materia,
+                  as: 'materia',
+              }],
+              where: {
+                  id,
+              }
+          });
+          res.status(200).send({ success: true, message: data });
+      } catch (error) {
+          res.status(500).send({ success: false, message: error.message });
+      }
+  }
+  mostrarAlumnoPorId = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = await Alumno.findOne({
+        where: {
+          id,
+        },
+        attributes: ["nombre"], 
+      });
+      if (data) {
+        res.status(200).send({ success: true, message: data });
+      } else {
+        throw new Error("alumno no encontrado");
+      }
+    } catch (error) {
+      res.status(500).send({ success: false, message: error.message });
+    }
+  };
+  
 
 }
 export default ControladorAlumnos

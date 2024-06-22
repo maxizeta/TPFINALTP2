@@ -1,4 +1,5 @@
-import { Materia } from "../modelos/index"
+import { where } from "sequelize";
+import { Alumno, Materia } from "../modelos/index"
 
 class ControladorMaterias {
     constructor() { }
@@ -37,7 +38,7 @@ class ControladorMaterias {
     };
     agregarNota = async (req, res) => {
         try {
-            const { id } = req.params
+            const { id, AlumnoId } = req.params
             const { nota } = req.body
             const data = await Materia.update(
                 {
@@ -46,9 +47,27 @@ class ControladorMaterias {
                 {
                     where: {
                         id,
+                        AlumnoId
                     },
                 }
             )
+            res.status(200).send({ success: true, message: data });
+        } catch (error) {
+            res.status(500).send({ success: false, message: error.message });
+        }
+    }
+    mostrarAlumnosPorMateria = async (req, res) => {
+        try {
+            const { id } = req.params;
+            const data = await Materia.findAll({
+                include: [{
+                    model: Alumno,
+                    as: 'alumnos',
+                }],
+                where: {
+                    id,
+                }
+            });
             res.status(200).send({ success: true, message: data });
         } catch (error) {
             res.status(500).send({ success: false, message: error.message });

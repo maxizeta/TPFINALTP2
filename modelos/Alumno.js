@@ -25,7 +25,9 @@ Alumno.init(
               isNumeric: true,
             },
         },    
-          
+        salt: {
+            type: DataTypes.STRING,
+          },          
         contraseña: {
             type: DataTypes.STRING,
             allowNull: false,
