@@ -1,5 +1,5 @@
 import { where } from "sequelize";
-import { Alumno, Materia } from "../modelos/index"
+import { Alumno, Materia } from "../modelos/index.js"
 
 class ControladorMaterias {
     constructor() { }

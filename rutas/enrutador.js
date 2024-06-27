@@ -1,8 +1,10 @@
-import  router  from "express"
+import  {Router}  from "express"
 import rutasAlumnos from "./rutasAlumnos.js"
+import rutasMaterias from "./rutasMaterias.js";
 
-const enrutador = router()
+const enrutador = Router()
 
 enrutador.use("/alumnos", rutasAlumnos)
+enrutador.use("/materias", rutasMaterias)
 
 export default enrutador
